@@ -1,0 +1,28 @@
+---
+name: Sync template
+
+on:
+  push:
+    paths-ignore:
+      - "v2ray-rules-dat.spec"
+
+jobs:
+  job:
+    name: Sync spec file content
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: checkout
+        name: Checkout current repository
+        uses: actions/checkout@master
+
+      - id: update
+        name: Generate spec template
+        run: |
+          sed "s/%global tag       .*/%global tag       @TAG@/g" v2ray-rules-dat.spec > v2ray-rules-dat.spec.in
+
+      - id: commit
+        name: Git auto commit
+        uses: stefanzweifel/git-auto-commit-action@master
+        with:
+          commit_message: "update template"

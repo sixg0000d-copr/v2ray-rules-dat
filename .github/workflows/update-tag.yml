@@ -1,0 +1,39 @@
+---
+name: Update tag from upstream
+
+env:
+  # Upstream repo which you want to follow
+  UPSTREAM_REPO: Loyalsoldier/v2ray-rules-dat
+
+on:
+  watch:
+  schedule:
+    - cron: "0 0 * * SAT"
+
+jobs:
+  job:
+    name: Update tag from upstream
+    runs-on: ubuntu-latest
+
+    steps:
+      - id: get-release
+        name: Get latest release version from upstream
+        uses: pozetroninc/github-action-get-latest-release@master
+        with:
+          repository: ${{ env.UPSTREAM_REPO }}
+          excludes: prerelease, draft
+
+      - id: checkout
+        name: Checkout current repository
+        uses: actions/checkout@master
+
+      - id: update
+        name: Update tag
+        run: |
+          sed "s/@TAG@/${{ steps.get-release.outputs.release }}/g" v2ray-rules-dat.spec.in > v2ray-rules-dat.spec
+
+      - id: commit
+        name: Git auto commit
+        uses: stefanzweifel/git-auto-commit-action@master
+        with:
+          commit_message: "${{ steps.get-release.outputs.release }}"
