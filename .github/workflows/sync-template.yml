@@ -3,7 +3,7 @@ name: Sync template
 
 on:
   push:
-    paths-ignore:
+    paths:
       - "v2ray-rules-dat.spec"
 
 jobs:

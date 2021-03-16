@@ -43,5 +43,5 @@ install -m 0644 -vp %{S:2} %{buildroot}%{_datadir}/v2ray/geosite.dat
 
 
 %changelog
-* Tue Mar 16 2021 sixg0000d <sixg0000d@gmail.com>
+* Tue Mar 16 2021 sixg0000d <sixg0000d@gmail.com> - 202103160825-1
 - Initial v2ray-rules-dat
