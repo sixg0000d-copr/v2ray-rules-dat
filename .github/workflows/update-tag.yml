@@ -6,8 +6,6 @@ env:
   UPSTREAM_REPO: Loyalsoldier/v2ray-rules-dat
 
 on:
-  watch:
-    types: [started]
   schedule:
     - cron: "0 0 * * SAT"
 
