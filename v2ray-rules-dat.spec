@@ -1,5 +1,5 @@
 %global forgeurl  https://github.com/Loyalsoldier/v2ray-rules-dat
-%global tag       202303032210
+%global tag       202303102209
 Version:          %{tag}
 
 %forgemeta
